@@ -1,27 +1,16 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-struct Particle {
-    double x;
-    double y;
-    double z;
+// Eric will do all three of these particle functions
+// (because they are easy and he's choosing)
+//
+// get position returns an array of three double
+double* GetPosition(int partIndex);
 
-    double xSpeed;
-    double ySpeed;
-    double zSpeed;
-};
+// set position
+int SetPosition(Simulation sim, int partIndex, int x, int y, int z);
 
-// get position
-double GetX(struct Particle);
-double GetY(struct Particle);
-double GetZ(struct Particle);
-
-// get direction
-double GetXSpeed(struct Particle);
-double GetYSpeed(struct Particle);
-double GetZSpeed(struct Particle);
-
-// update particle position
-void UpdatePosition(int timestep);
+// Brownian returns an array of three doubles of Brownian displacement
+double* GetBrownian();
 
 #endif
