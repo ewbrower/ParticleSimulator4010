@@ -25,11 +25,6 @@ This function is defined in Simulation.h
 ------------------- Abi Emmanuel -------------------
 All these functions have to do with reading and setting positions of some particular particle in some simulation.
 
-double* SetPosition(Simulation sim, int partIndex, double x, double y, double z);
-SetPosition takes in five parameters! You will need a pointer for the simulation, and an integer for the particle index. This way, the user doesn't have to handle any weird Particle structs, we don't want to confuse them. The simulation will (probably) be able to find the particle you are looking for, and then you can update the three coordinates, which are all doubles.
-This function returns the vector that you set the particle position to, we do this just so it's convenient for the programming (good practice).
-This function is defined in Particle.h
-
 double* GetPosition(Simulation sim, int partIndex);
 GetPosition takes two parameters, it's the simulation pointer and the index to find the particle in that particular simulation.
 This thing returns an array of doubles. There are three! There are three because there are three dimensions in our dimension, or at least in this simulation probably!
@@ -58,7 +53,9 @@ SimulationNetForce takes in two params: a simulation pointer and a particular in
 This thing returns an array of doubles. This will correspond to the three-part force vector so we can update the particle position later.
 This function is defined in Simulation.h
 
-double* SimulationInBox(Simulation sim, int partIndex);
-Given an updated particle index and a simulation (that's two params), this function will determine where to place the particle in the simulation. We wanted to keep the setting the location and finding where the particle is placed in two separate functions.
-This function returns an array of three doubles, which is the correct position vector. We have to make sure that the particle remains in the box following the rules in the instructions. So if we give this function a particle with an invalid position (outside the box) we can update the particle to the correct postion (inside the box) based on the output of this function.
+double* SetPosition(Simulation sim, int partIndex, double x, double y, double z);
+SetPosition takes in five parameters! You will need a pointer for the simulation, and an integer for the particle index. This way, the user doesn't have to handle any weird Particle structs, we don't want to confuse them. The simulation will (probably) be able to find the particle you are looking for, and then you can update the three coordinates, which are all doubles.
+This function also does all the artihmetic to make sure the particle stays inside the simulated box. We have to make sure that the particle remains in the box following the rules in the instructions. So if we give this function a particle with an invalid position (outside the box) we can update the particle to the correct postion (inside the box) based on the work of this function.
+This function returns the vector that you set the particle position to, we do this just so it's convenient for the programming (good practice).
 This function is defined in Simulation.h
+
