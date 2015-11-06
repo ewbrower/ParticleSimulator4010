@@ -1,0 +1,60 @@
+Particle tests
+    - GetPosition
+        - use the function, compare to direct access of location data in each particle struct
+    - GetBrownian
+        - plot or test that it is sufficiently random (eye-check)
+    - SetPosition
+        - set position to outside the box
+        - then look at position directly, location data
+        - do this for each point outside each of the six faces
+
+Simulation tests
+    - CreateSimulation
+        - check the values
+    - CreateParticles
+        - eyetest for random
+        - generate variable numbers of particles
+        - make sure all particles in the box
+        - make sure there are enough particles
+    - Update
+        - test setposition
+        - test order of functions
+    - distance
+        - calculate distance linearly
+        - calculate distance through the walls
+    - netforce
+        - calculate force linearly
+        - calculate force through the walls
+    - generate particles manually
+        - assign locations directly
+        - test suite of particle positions
+    - write to file
+        - confirm locations of particle in model and in VMD
+    - full stack test
+        - limited particles and limited updates
+
+testprog1(num particles, box, array of positions)
+createparticles
+for particle in particles:
+    setposition(some numbers we already know)
+run some test
+
+Eric
+
+Cameron 
+
+Abi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
