@@ -1,0 +1,29 @@
+Test File
+(1) a description of what the test does
+(2) what is the input to the test program
+(3) what is the output of the test program if the test passes
+(4) which functions are tested by the test program,
+(5) the proposed author of the test program
+
+CalcualtionTests
+(1) This test is designed to test all the calculations generated in this assignment.
+Starting by running the CreateParticles function so that the particles can be randomly generated.
+Then the GetPosition function will be called to identify the location of each created particle.
+The two function calls are necessary to test the calculated functions, which consists of
+GetBrowian, which calculates the displacement for each time step and the corresponding normal distribution.
+GetParticleDistance, which runs the distance formula find the particles close enough to consider doing further calculations with.
+SimulationNetForce, which calculates the net force on the original particle affected by those particles in close proximity, based on the distance function.
+
+(2) The input to this test function will be the necessary variables to call all the corresponding functions, such as
+"Simulation sim" originally passed in CreateParticles,
+"int partIndexA" and "int partIndexB" originally passed in GetParticleDistance, and
+"int partIndex" originally passed in SimulationNetForce.
+
+(3) If the test passes, the output to the function will be the printed results of
+the original location of the particle, the traj.xyz file, the printed distances for each particle being compared,
+and the calculated force for the particle in proximity.
+
+(4) CreateParticles, GetPosition, GetBrowian, GetParticleDistance, SimulationNetForce, WriteToFile
+
+(5) Abi Emmanuel - 902913119
+
