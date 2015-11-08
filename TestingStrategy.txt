@@ -5,42 +5,41 @@ Test File
 (4) which functions are tested by the test program,
 (5) the proposed author of the test program
 
-CalculationTests
-(1) This test is designed to test all the calculations generated in this assignment.
-Starting by running the CreateParticles function so that the particles can be randomly generated.
-Then the GetPosition function will be called to identify the location of each created particle.
-The two function calls are necessary to test the calculated functions, which consists of
-GetBrowian, which calculates the displacement for each time step and the corresponding normal distribution.
-GetParticleDistance, which runs the distance formula find the particles close enough to consider doing further calculations with.
-SimulationNetForce, which calculates the net force on the original particle affected by those particles in close proximity, based on the distance function.
-(2) The input to this test function will be the necessary variables to call all the corresponding functions, such as
-"Simulation sim" originally passed in CreateParticles,
-"int partIndexA" and "int partIndexB" originally passed in GetParticleDistance, and
-"int partIndex" originally passed in SimulationNetForce.
-(3) If the test passes, the output to the function will be the printed results of
-the original location of the particle, the traj.xyz file, the printed distances for each particle being compared,
-and the calculated force for the particle in proximity.
-(4) CreateParticles, GetPosition, GetBrowian, GetParticleDistance, SimulationNetForce, WriteToFile
+Calculation Tests
+(1) This test is designed to test all the calculations generated in this assignment. Starting by running the CreateParticles function so that the particles can be randomly generated. Then the GetPosition function will be called to identify the location of each created particle. The two function calls are necessary to test the calculated functions, which consists of GetBrowian, which calculates the displacement for each time step and the corresponding normal distribution. GetParticleDistance, which runs the distance formula find the particles close enough to consider doing further calculations with. SimulationNetForce, which calculates the net force on the original particle affected by those particles in close proximity, based on the distance function.
+(2) The input to this test function will be the necessary variables to call all the corresponding functions, such as:
+ - "Simulation sim" originally passed in CreateParticles,
+ - "int partIndexA" and "int partIndexB" originally passed in GetParticleDistance, and
+ - "int partIndex" originally passed in SimulationNetForce.
+(3) If the test passes, the output to the function will be the printed results of the original location of the particle, the traj.xyz file, the printed distances for each particle being compared, and the calculated force for the particle in proximity.
+(4) CreateParticles, GetPosition, GetBrownian, GetParticleDistance, SimulationNetForce, WriteToFile
 (5) Abi Emmanuel - 902913119
 
-Particletests
-(1) Description: Uses GetPosition, compare its output to direct access of location data in each particle struct
-(2) Inputs: Simulation struct, index of particle 1, index of particle 2
-(3) Output if test passes: Integer zero
-(4) Functions tested: GetPosition
+Particle Tests
+(1) Uses GetPosition, compare its output to direct access of location data in each particle struct
+(2) Simulation struct, index of particle 1, index of particle 2
+(3) Integer zero
+(4) GetPosition
 (5) Cameron McMillan
 
-(1) Description: Plot to eye-check that it is sufficiently random
-(2) Inputs: Number of times to run GetBrownian
-(3) Outputs: Plot of x, y, and z to check randomness
-(4) Functions tested: GetBrownian
+(1) Plot to eye-check that it is sufficiently random
+(2) Number of times to run GetBrownian
+(3) Plot of x, y, and z to check randomness
+(4) GetBrownian
 (5) Cameron McMillan
 
-(1) Description: set position to various points inside and outside the box then look at position accesing it via Particle struct and GetPosition. Run this multiple times to test setting points to new positions inside the box and outside the box to make sure this function accurately handles the wall case for each of the six faces
-(2) Inputs: Simulation struct, index of particle to test, double array of new position
-(3) Output if test passes: Integer zero
-(4) Functions tested: SetPosition, GetPosition
+(1) Set position to various points inside and outside the box then look at position accesing it via Particle struct and GetPosition. Run this multiple times to test setting points to new positions inside the box and outside the box to make sure this function accurately handles the wall case for each of the six faces
+(2) Simulation struct, index of particle to test, double array of new position
+(3) Integer zero
+(4) SetPosition, GetPosition
 (5) Cameron McMillan
+
+Full Stack Test
+(1) This test is based on running the full stack of the simulation, with a focus on creating the sim and updating the sim for a number of iterations. The checks will range from memory problems to the function not performing as expected in the VMD software readouts. For low levels of iterations, the update function will create a new xyz file, so that if problems occur, we as programmers will be able to determine the instant the program failed.
+(2) The input for this test will be boxes of vaious lengths "l" greater than 2 and a varying number of particles ranging from 2 - 100. This test will be repeated over many instances in order to find memory issues and other errors derived from frontloaded inputs.
+(3) Integer zero to arrive with no warnings or errors. A visual check on the xyz file in VMD to make sure the functions act as they are supposed to. Every iteration of Update shall build a new xyz file in order to observe each instance of the sim (when the number of iterations is small)
+(4) CreateSimulation, Update, (all other functions as well, but not focused on)
+(5) Eric Brower - 902840583
 
 
 
