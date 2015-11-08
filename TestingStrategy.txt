@@ -5,7 +5,7 @@ Test File
 (4) which functions are tested by the test program,
 (5) the proposed author of the test program
 
-CalcualtionTests
+CalculationTests
 (1) This test is designed to test all the calculations generated in this assignment.
 Starting by running the CreateParticles function so that the particles can be randomly generated.
 Then the GetPosition function will be called to identify the location of each created particle.
@@ -13,17 +13,39 @@ The two function calls are necessary to test the calculated functions, which con
 GetBrowian, which calculates the displacement for each time step and the corresponding normal distribution.
 GetParticleDistance, which runs the distance formula find the particles close enough to consider doing further calculations with.
 SimulationNetForce, which calculates the net force on the original particle affected by those particles in close proximity, based on the distance function.
-
 (2) The input to this test function will be the necessary variables to call all the corresponding functions, such as
 "Simulation sim" originally passed in CreateParticles,
 "int partIndexA" and "int partIndexB" originally passed in GetParticleDistance, and
 "int partIndex" originally passed in SimulationNetForce.
-
 (3) If the test passes, the output to the function will be the printed results of
 the original location of the particle, the traj.xyz file, the printed distances for each particle being compared,
 and the calculated force for the particle in proximity.
-
 (4) CreateParticles, GetPosition, GetBrowian, GetParticleDistance, SimulationNetForce, WriteToFile
-
 (5) Abi Emmanuel - 902913119
+
+Particletests
+(1) Description: Uses GetPosition, compare its output to direct access of location data in each particle struct
+(2) Inputs: Simulation struct, index of particle 1, index of particle 2
+(3) Output if test passes: Integer zero
+(4) Functions tested: GetPosition
+(5) Cameron McMillan
+
+(1) Description: Plot to eye-check that it is sufficiently random
+(2) Inputs: Number of times to run GetBrownian
+(3) Outputs: Plot of x, y, and z to check randomness
+(4) Functions tested: GetBrownian
+(5) Cameron McMillan
+
+(1) Description: set position to various points inside and outside the box then look at position accesing it via Particle struct and GetPosition. Run this multiple times to test setting points to new positions inside the box and outside the box to make sure this function accurately handles the wall case for each of the six faces
+(2) Inputs: Simulation struct, index of particle to test, double array of new position
+(3) Output if test passes: Integer zero
+(4) Functions tested: SetPosition, GetPosition
+(5) Cameron McMillan
+
+
+
+
+
+
+
 
