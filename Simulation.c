@@ -93,11 +93,15 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexA, x1, y1, z1);
 	printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexB, x2, y2, z2);
 	// check for distance
-	double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
 	// check to see if distance is shorter per each
+
+	double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
+
+
+
 	if (x1 < 2 && x2 > length - 2)
 	{
-		printf("x1 < 2 && x2 > length -2\n");
+		printf("x1 < 2 && x2 > length - 2\n");
 		double tempX1 = length + x1;
 		double tempDist = sqrt((tempX1-x2)*(tempX1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
 
@@ -160,6 +164,26 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 		{
 			dist = tempDist;
 		}
+	}
+
+	// check for all combinations
+	if (x1 < 2)
+		x1 = length + x1;
+	if (x2 < 2)
+		x2 = length + x1;
+	if (y1 < 2)
+		y1 = length + y1;
+	if (y2 < 2)
+		y2 = length + y2;
+	if (z1 < 2)
+		z1 = length + z1;
+	if (z2 < 2)
+		z2 = length + z2;
+
+	double edgeDist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
+	if (edgeDist < dist)
+	{
+		dist = edgeDist;
 	}
 	// doesn't take care of every overlap case
 
