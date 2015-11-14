@@ -13,6 +13,7 @@ struct simulation {
 	Particle *part_arr;
 	double L;
 	int b;
+	double *force_arr;
 };
 typedef struct simulation Simulation;
 // create simulation

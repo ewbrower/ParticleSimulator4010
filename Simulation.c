@@ -19,10 +19,11 @@
 Simulation* CreateSimulation(double l, int b)
 {
 	Simulation *sim = (Simulation*)malloc(sizeof(Simulation));
-
+	
 	sim->L = l;
 	sim->part_arr = (Particle*)malloc(b*sizeof(double));
-	
+	sim->force_arr = (double*)malloc(3*b*sizeof(double));
+
 	return sim;
 }
 // // generate the array of random Particles (private)
@@ -42,6 +43,9 @@ double* SimulationNetForce(Simulation *sim, int partIndex)
 	int i, j;
 	for (i = 0; i < sim->b; i++)
 	{
+		netForce[0] = 0.0;
+		netForce[1] = 0.0;
+		netForce[2] = 0.0;
 		for (j = 0; j < sim->b; j++)
 		{
 			if (j !=i)
@@ -51,13 +55,19 @@ double* SimulationNetForce(Simulation *sim, int partIndex)
 				{
 					Fmag = 125*(2-dist[3]);
 					Fscale = Fmag/dist[3];
-					//netForce[0] += 
+					netForce[0] += Fscale*dist[0];
+					netForce[1] += Fscale*dist[1];
+					netForce[2] += Fscale*dist[2];
 						
 				} 
 			}	
 		}
+		sim->force_arr[3*i] = netForce[0];
+		sim->force_arr[3*i+1] = netForce[1];
+		sim->force_arr[3*i+2] = netForce[2];
 	}
 	free(netForce);
+	free(dist);
 }
 // // check if in box update position to correct one
 double* SetPosition(Simulation *sim, int partIndex, double *pos)
