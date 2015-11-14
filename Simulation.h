@@ -33,4 +33,5 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);
 //
 //
 void ParticleCreate(Simulation *sim, int partInex, double* init_pos);
+void GetDistanceTest();
 #endif
