@@ -36,7 +36,7 @@ Simulation* CreateSimulation(double l, int b)
 double* SimulationNetForce(Simulation sim, int partIndex)
 {
 	double *netForce = (double*)malloc(3*sizeof(double));
-	double dist, Fma, Fscale;;
+	double dist, Fmag, Fscale;
 	
 	int i, j;
 	for (i = 0; i < sim->b; i++)
