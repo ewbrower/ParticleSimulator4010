@@ -33,7 +33,31 @@ Simulation* CreateSimulation(double l, int b)
 // // particle distance getter thing
 // double GetParticleDistance(Simulation sim, int partIndexA, int partIndexB);
 // // find net force
-// double* SimulationNetForce(Simulation sim, int partIndex);
+double* SimulationNetForce(Simulation sim, int partIndex)
+{
+	double *netForce = (double*)malloc(3*sizeof(double));
+	double dist, Fmag;
+	
+	int i, j;
+	for (i = 0; i < sim->b; i++)
+	{
+		for (j = 0; j < sim->b; j++)
+		{
+			if (j !=i)
+			{
+				dist = GetParticleDistance(sim, i, j);
+				if (dist < 2)
+				{
+					Fmag = 125*(2-dist);
+					Fscale = Fmag/dist;
+					netForce[0] += 
+						
+				} 
+			}	
+		}
+	}
+	free(netForce);
+}
 // // check if in box update position to correct one
 double* SetPosition(Simulation *sim, int partIndex, double *pos)
 {

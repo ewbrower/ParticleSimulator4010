@@ -12,6 +12,7 @@ typedef struct particle Particle;
 struct simulation {
 	Particle *part_arr;
 	double L;
+	int b;
 };
 typedef struct simulation Simulation;
 // create simulation
@@ -24,7 +25,7 @@ Simulation* CreateSimulation(double l, int b);
 // // particle distance getter thing
 double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);
 // // find net force
-// double* SimulationNetForce(Simulation sim, int partIndex);
+double* SimulationNetForce(Simulation sim, int partIndex);
 // // check if in box update position to correct one
  double* SetPosition(Simulation *sim, int partIndex, double *pos);
 //
