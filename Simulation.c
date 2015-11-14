@@ -2,23 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "Particle.h"
+//#include "Particle.h"
 
-struct Simulation {
-	Particle *part_arr;
-	double L;
+//struct simulation {
+//	Particle *part_arr;
+//	double L;
 	
-};
+//};
+//typedef struct Simulation Simulation;
 
-int main(void)
-{
-// create simulation
+//struct particle {
+//	double *pos;
+//};
+//typedef struct particle Particle;
+
 Simulation* CreateSimulation(double l, int b)
 {
-	Simulation *sim = malloc(sizeof(Simulation));
+	Simulation *sim = (Simulation*)malloc(sizeof(Simulation));
 
 	sim->L = l;
-	sim->part_arr = malloc(b*sizeof(double));
+	sim->part_arr = (Particle*)malloc(b*sizeof(double));
 	
 	return sim;
 }
@@ -40,13 +43,21 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 	pos[2] = fmod(pos[2],sim->L);
 	
 	//Assigns updated position to particle
-	sim->part_arr[partIndex - 1]->pos = pos;
-	//DO PARTICLE INDICIES START AT ZERO OR ONE?!?!?!?
-
-	return sim->part_arr[partIndex - 1]->pos;
+	sim->part_arr[partIndex].pos = pos;
+	//PARTICLE INDICIES START AT ZERO
+	//
+	return sim->part_arr[partIndex].pos;
 }
 //
 // // write to the xyz file
 // void WriteToFile(Simulation sim);
 
+
+
+Particle* ParticleCreate(double* init_pos)
+{
+	Particle *p = (Particle*)malloc(sizeof(Particle));
+	 p->pos = init_pos;
+	return p;
 }
+                      

@@ -1,11 +1,21 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
 #define TIMESTEP = 0.0002
+//#include "Particle.h"
 
-typedef struct Simulation Simulation;
+struct particle {
+	double *pos;
+};
 
+typedef struct particle Particle;
+
+struct simulation {
+	Particle *part_arr;
+	double L;
+};
+typedef struct simulation Simulation;
 // create simulation
-// Simulation* CreateSimulation(double l, int b);
+Simulation* CreateSimulation(double l, int b);
 // // generate the array of random Particles (private)
 // int CreateParticles(Simulation sim);
 //
@@ -16,9 +26,11 @@ typedef struct Simulation Simulation;
 // // find net force
 // double* SimulationNetForce(Simulation sim, int partIndex);
 // // check if in box update position to correct one
- double* SetPosition(Simulation sim, int partIndex, double* pos);
+ double* SetPosition(Simulation *sim, int partIndex, double *pos);
 //
 // // write to the xyz file
 // void WriteToFile(Simulation sim);
 //
-// #endif
+//
+Particle* ParticleCreate(double* init_pos);
+#endif
