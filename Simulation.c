@@ -106,7 +106,7 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 			dist = tempDist;
 		}
 	}
-	if (x2 < 2 && x1 > length - 2)
+	else if (x2 < 2 && x1 > length - 2)
 	{
 		printf("x2 < 2 && x1 > length - 2\n");
 		double tempX2 = length + x2;
@@ -117,7 +117,7 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 			dist = tempDist;
 		}
 	}
-	if (y1 < 2 && y2 > length - 2)
+	else if (y1 < 2 && y2 > length - 2)
 	{
 		printf("y1 < 2 && y2 > length - 2\n");
 		double tempY1 = length + y1;
@@ -128,7 +128,7 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 			dist = tempDist;
 		}
 	}
-	if (y2 < 2 && y1 > length - 2)
+	else if (y2 < 2 && y1 > length - 2)
 	{
 		printf("y2 < 2 && y1 > length - 2\n");
 		double tempY2 = length + y2;
@@ -139,7 +139,7 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 			dist = tempDist;
 		}
 	}
-	if (z1 < 2 && z2 > length - 2)
+	else if (z1 < 2 && z2 > length - 2)
 	{
 		printf("z1 < 2 && z2 > length - 2\n");
 		double tempZ1 = length + z1;
@@ -150,7 +150,7 @@ double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 			dist = tempDist;
 		}
 	}
-	if (z2 < 2 && z1 > length - 2)
+	else if (z2 < 2 && z1 > length - 2)
 	{
 		printf("z2 < 2 && z1 > length - 2\n");
 		double tempZ2 = length + z2;
