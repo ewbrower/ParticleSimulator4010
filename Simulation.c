@@ -87,6 +87,21 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 // // write to the xyz file
 // void WriteToFile(Simulation sim);
 
+void GetBrownian(double* brownian)
+{
+	int i, j;
+	for (i = 0; i < 3; i++)
+	{
+		brownian[i] = 0;
+		for (j = 0; j < 12; j++)
+		{
+			brownian[i] += rand()/(double)RAND_MAX;
+		}
+		brownian[i] -= 6;
+		brownian[i] =brownian[i]* sqrt(2*(double)TIMESTEP);
+	}	
+}
+
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 {
 	printf("\n");
