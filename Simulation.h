@@ -23,7 +23,7 @@ Simulation* CreateSimulation(double l, int b);
 // // update simulation to next timestep (which is known)
 // void Update(Simulation sim);
 // // particle distance getter thing
-double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);
+double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);
 // // find net force
 double* SimulationNetForce(Simulation *sim, int partIndex);
 // // check if in box update position to correct one
