@@ -1,23 +1,19 @@
 #include "Particle.h"
 
 struct Particle {
-    double x;
-    double y;
-    double z;
-};
+    double *pos;
+ };
 
-double GetX(struct Particle)
+double* GetPos(Particle *p)
 {
-    // return an array of double
-    return 0.0;
+	// return an array of double
+	return p->pos;
 }
 
-double GetY(struct Particle)
+Particle* ParticleCreate(double* init_pos)
 {
-    return 0.0;
-}
+	Particle *p = malloc(sizeof(Particle));
+	p->pos = init_pos;
 
-double GetZ(struct Particle)
-{
-    return 0.0;
+	return p;
 }
