@@ -52,12 +52,101 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 // // write to the xyz file
 // void WriteToFile(Simulation sim);
 
+double GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
+{
+	// get the vals
+	double length = sim->L;
+	printf("Length of box: %f\n", length);
+	Particle *partA = &sim->part_arr[partIndexA];
+	Particle *partB = &sim->part_arr[partIndexB];
+	double x1 = partA->pos[0];
+	double y1 = partA->pos[1];
+	double z1 = partA->pos[2];
+	double x2 = partB->pos[0];
+	double y2 = partB->pos[1];
+	double z2 = partB->pos[2];
 
+	printf("Particle 1:\nx:\t%f\ny:\t%f\ny:\t%f\n", x1, y1, z1);
+	printf("Particle 2:\nx:\t%f\ny:\t%f\ny:\t%f\n", x2, y2, z2);
+	// check for distance
+	double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
+	// check to see if distance is shorter per each
+	if (x1 < 2 && x2 > length - 2)
+	{
+		printf("x1 < 2\n");
+		double tempX1 = length + x1;
+		double tempDist = sqrt((tempX1-x2)*(tempX1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
 
-Particle* ParticleCreate(double* init_pos)
+		if (tempDist < dist)
+		{
+			dist = tempDist;
+		}
+	}
+	if (x2 < 2 && x1 > length - 2)
+	{
+		printf("x2 < 2\n");
+		double tempX2 = length + x2;
+		double tempDist = sqrt((x1-tempX2)*(x1-tempX2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
+
+		if (tempDist < dist)
+		{
+			dist = tempDist;
+		}
+	}
+	if (y1 < 2 && y2 > length - 2)
+	{
+		printf("y1 < 2\n");
+		double tempY1 = length + y1;
+		double tempDist = sqrt((x1-x2)*(x1-x2) + (tempY1-y2)*(tempY1-y2) + (z1-z2)*(z1-z2));
+
+		if (tempDist < dist)
+		{
+			dist = tempDist;
+		}
+	}
+	if (y2 < 2 && x1 > length - 2)
+	{
+		printf("y2 < 2\n");
+		double tempY2 = length + y2;
+		double tempDist = sqrt((x1-x2)*(x1-x2) + (y1-tempY2)*(y1-tempY2) + (z1-z2)*(z1-z2));
+
+		if (tempDist < dist)
+		{
+			dist = tempDist;
+		}
+	}
+	if (z1 < 2 && z2 > length - 2)
+	{
+		printf("z1 < 2\n");
+		double tempZ1 = length + z1;
+		double tempDist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (tempZ1-z2)*(tempZ1-z2));
+
+		if (tempDist < dist)
+		{
+			dist = tempDist;
+		}
+	}
+	if (z2 < 2 && z1 > length - 2)
+	{
+		printf("z2 < 2\n");
+		double tempZ2 = length + z2;
+		double tempDist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-tempZ2)*(z1-tempZ2));
+
+		if (tempDist < dist)
+		{
+			dist = tempDist;
+		}
+	}
+
+	printf("Distance: %f\n", dist);
+
+	return 0.0;
+}
+
+void ParticleCreate(Simulation *sim, int partIndex, double* init_pos)
 {
 	Particle *p = (Particle*)malloc(sizeof(Particle));
-	 p->pos = init_pos;
-	return p;
+	sim->part_arr[partIndex] = *p;
+	SetPosition(sim, partIndex, init_pos);
 }
                       
