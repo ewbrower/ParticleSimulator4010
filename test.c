@@ -139,8 +139,6 @@ void GetDistanceTest(Simulation *sim)
 
 }
 
-void 
-
 
 
 

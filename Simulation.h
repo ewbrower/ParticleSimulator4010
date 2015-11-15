@@ -36,10 +36,5 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos);
 void GetPosition(Simulation *sim, int partIndex, double* pos);
 //
 void ParticleCreate(Simulation *sim, int partInex, double* init_pos);
-<<<<<<< HEAD
 void GetDistanceTest(Simulation *sim);
-=======
-void GetDistanceTest();
-
->>>>>>> 10f4f6d30f4fddfa8293d4f4cd08bfb9cfcbbc39
 #endif
