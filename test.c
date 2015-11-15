@@ -126,7 +126,7 @@ int main(void)
 	
 }
 
-void GetDistanceTest(Simulation *sim)
+int GetDistanceTest(Simulation *sim)
 {
 	printf("GetDistance Test\n");
 
@@ -138,9 +138,11 @@ void GetDistanceTest(Simulation *sim)
 	GetParticleDistance(sim,10,11);
 	GetParticleDistance(sim,12,13);
 
+	return 0;
+
 }
 
-void ForceTest(Simulation *sim)
+int ForceTest(Simulation *sim)
 {
 	printf("Force Test\n");
 	Particle* arr = sim->part_arr;
@@ -163,6 +165,8 @@ void ForceTest(Simulation *sim)
 		printf("Particle %d\nx %f\ny %f\nz %f\n\n",i, arr[i].pos[0], arr[i].pos[1], arr[i].pos[2]);
 	}
 
+	return 0;
+
 }
 
 // this function says how many particles to simultaneously run
@@ -176,7 +180,7 @@ int StackTest(int start, int end)
 	for (i = start; i < end; i++)
 	{
 		Simulation *sim;
-		
+
 		SimulationDestroy(sim);
 	}
 }

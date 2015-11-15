@@ -44,8 +44,8 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos);
 void GetPosition(Simulation *sim, int partIndex, double* pos);
 
 // ***** tests *****
-void GetDistanceTest(Simulation *sim);
-void ForceTest(Simulation *sim);
-void StackTest(int start, int end);
+int GetDistanceTest(Simulation *sim);
+int ForceTest(Simulation *sim);
+int StackTest(int start, int end);
 
 #endif
