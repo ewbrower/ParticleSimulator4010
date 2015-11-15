@@ -180,7 +180,7 @@ int StackTest(int start, int end)
 	for (i = start; i < end; i++)
 	{
 		Simulation *sim;
-
+		sim = CreateSimulation(12,4);
 		DestroySimulation(sim);
 	}
 

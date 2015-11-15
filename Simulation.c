@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 //#include "Particle.h"
 
 //struct simulation {
@@ -23,13 +24,32 @@ Simulation* CreateSimulation(double l, int b)
 	
 	sim->b = b;
 	sim->L = l;
-	sim->part_arr = (Particle*)malloc(b*sizeof(double));
+	sim->part_arr = (Particle*)malloc(b*sizeof(Particle));
 	sim->force_arr = (double*)malloc(3*b*sizeof(double));
 
 	return sim;
 }
-// // generate the array of random Particles (private)
-// int CreateParticles(Simulation sim);
+// generate the array of random Particles (private)
+int CreateParticles(Simulation *sim)
+{
+	int i, num;
+	double x, y, z;
+	num = sim->b;
+	srand(time(NULL));
+	
+	for (i = 0; i < num; i++)
+	{
+		x = rand()/RAND_MAX; // random
+		y = rand()/RAND_MAX; // random
+		z = rand()/RAND_MAX; // random
+		sim->part_arr[i].pos[0] = x;
+		sim->part_arr[i].pos[1] = y;
+		sim->part_arr[i].pos[2] = z;
+	}
+
+	return num;
+}
+
 //
 // // update simulation to next timestep (which is known)
  void Update(Simulation *sim)
@@ -170,6 +190,7 @@ void WriteToFile(Simulation *sim)
 void GetBrownian(double* brownian)
 {
 	int i, j;
+	srand(time(NULL));
 	for (i = 0; i < 3; i++)
 	{
 		brownian[i] = 0;

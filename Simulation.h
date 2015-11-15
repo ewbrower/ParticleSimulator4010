@@ -31,7 +31,7 @@ void WriteToFile(Simulation *sim);
 // create a particle at a particular position
 void ParticleCreate(Simulation *sim, int partInex, double* init_pos);
 // generate the array of random Particles (private)
-// int CreateParticles(Simulation sim);
+int CreateParticles(Simulation *sim);
 // generate randome brownian
 void GetBrownian(double *brownian);
 // particle distance getter thing
