@@ -110,9 +110,9 @@ int main(void)
 	ParticleCreate(sim,12,pos13);
 	ParticleCreate(sim,13,pos14);
 
-	 GetDistanceTest(sim);
+	 //GetDistanceTest(sim);
 	// ForceTest(sim);
-	//StackTest(4.0, 10, 10);
+	StackTest(4.0, 10, 10);
 	// StackTest(4.0, 100, 10);
 	// StackTest(10.0, 10, 10);
 	// StackTest(10.0, 100, 10);

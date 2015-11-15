@@ -38,10 +38,11 @@ int CreateParticles(Simulation *sim)
 
 	for (i = 0; i < sim->b; i++)
 	{
+		double L = sim->L;
 		sim->part_arr[i].pos= (double*)malloc(3*sizeof(double));
-		x = rand()/RAND_MAX; // random
-		y = rand()/RAND_MAX; // random
-		z = rand()/RAND_MAX; // random
+		x = (L*rand())/(double)RAND_MAX; // random
+		y = (L*rand())/(double)RAND_MAX; // random
+		z = (L*rand())/(double)RAND_MAX; // random
 		sim->part_arr[i].pos[0] = x;
 		sim->part_arr[i].pos[1] = y;
 		sim->part_arr[i].pos[2] = z;
@@ -203,8 +204,8 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	double y2 = partB->pos[1];
 	double z2 = partB->pos[2];
 
-	 printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexA, x1, y1, z1);
-	 printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexB, x2, y2, z2);
+	//printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexA, x1, y1, z1);
+	//printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexB, x2, y2, z2);
 
 	double *dVector = malloc(4*sizeof(double));
 
@@ -314,8 +315,8 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	//}
 	// doesn't take care of every overlap case
 
-	 printf("Diplacement: \nx: %f\ny: %f\nz: %f\n", dVector[0], dVector[1], dVector[2]);
-	printf("Total Distance: %f\n\n", dVector[3]);
+	//printf("Diplacement: \nx: %f\ny: %f\nz: %f\n", dVector[0], dVector[1], dVector[2]);
+	//printf("Total Distance: %f\n\n", dVector[3]);
 	return dVector;
 }
 
