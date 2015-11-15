@@ -113,6 +113,12 @@ int main(void)
 	// GetDistanceTest(sim);
 	// ForceTest(sim);
 	StackTest(4.0, 10, 10);
+	// StackTest(4.0, 100, 10);
+	// StackTest(10.0, 10, 10);
+	// StackTest(10.0, 100, 10);
+	// StackTest(100.0, 10, 10);
+	// StackTest(100.0, 100, 10);
+
 
 	// printf("Position of particle 1:\nx: %f\ny: %f\nz: %f\n",sim->part_arr[0].pos[0], sim->part_arr[0].pos[1], sim->part_arr[0].pos[2]);
 	// //test set position
@@ -176,7 +182,7 @@ int ForceTest(Simulation *sim)
 // how many steps to run on each iteration
 int StackTest(double length, int particles, int steps)
 {
-	int parts;
+	int parts, i, j, k;
 
 	if (length <= 0 || particles <= 0 || steps <= 0)
 	{
@@ -184,15 +190,34 @@ int StackTest(double length, int particles, int steps)
 		return -1;
 	}
 
+	printf("\n----------------\nStack Test\n----------------\n\n");
+
 	Simulation *sim;
 	sim = CreateSimulation(length, particles);
-	printf("\nCreated simulation\nbox length: %f\nparticles: %d\n", length, particles);
+	printf("Created simulation\nbox length: %f\nparticles: %d\n", length, particles);
 
 	printf("sim num: %d\n\n", sim->b);
 
 	parts = CreateParticles(sim);
-	printf("Just created %d particles in this simulation\n\n", parts);
+	printf("Created %d particles in this simulation\n\n", parts);
 
+	for (i = 0; i < steps; i++)
+	{
+		Update(sim);
+		printf("-- Update %d Force Summary --\n", i);
+		for(j = 0; j < particles*3; j+=3)
+		{
+			printf("Particle %d\n", j/3);
+			for (k = 0; k < 3; k++)
+			{
+				printf("%f ", sim->force_arr[j+k]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+	}
+
+	printf("------------------------------\n\n");
 	DestroySimulation(sim);
 	printf("Destroyed the simulation\n");
 	return 0;

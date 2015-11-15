@@ -39,7 +39,6 @@ int CreateParticles(Simulation *sim)
 	for (i = 0; i < sim->b; i++)
 	{
 		sim->part_arr[i].pos= (double*)malloc(3*sizeof(double));
-		printf("Particle %d\n", i);
 		x = rand()/RAND_MAX; // random
 		y = rand()/RAND_MAX; // random
 		z = rand()/RAND_MAX; // random
