@@ -110,9 +110,15 @@ int main(void)
 	ParticleCreate(sim,12,pos13);
 	ParticleCreate(sim,13,pos14);
 
+<<<<<<< HEAD
 	 //GetDistanceTest(sim);
 	// ForceTest(sim);
 	StackTest(4.0, 10, 10);
+=======
+	 // GetDistanceTest(sim);
+	// ForceTest(sim);
+	// StackTest(4.0, 10, 10);
+>>>>>>> origin/master
 	// StackTest(4.0, 100, 10);
 	// StackTest(10.0, 10, 10);
 	// StackTest(10.0, 100, 10);
@@ -131,6 +137,8 @@ int main(void)
 	// printf("\nGet Distance Test\n");
 	// GetParticleDistance(sim, 0, 1);
 	
+	VerifyPosition(sim, 0);
+
 	//Calls WriteToFile function
 	WriteToFile(sim);
 	
@@ -232,6 +240,29 @@ int StackTest(double length, int particles, int steps)
 	return 0;
 }
 
+int VerifyPosition(Simulation *sim, int partIndex)
+{
+	double *function, *manual;
+
+	Particle *part = &sim->part_arr[partIndex];
+
+	GetPosition(sim, partIndex, function);
+	manual = part->pos;
+
+	if (function[0] != manual[0] || function[1] != manual[1] || function[2] != manual[2])
+	{
+		printf("Some access is broken.\n");
+
+		printf("Position given by GetPosition:\n");
+		printf("x: %f\ny: %f\nz: %f\n", function[0], function[1], function[2]);
+		printf("\nPosition given by manual access\n");
+		printf("x: %f\ny: %f\nz: %f\n", manual[0], manual[1], manual[2]);
+		return -1;
+	}
+
+	printf("Position verified\n");
+	return 0;
+}
 
 
 
