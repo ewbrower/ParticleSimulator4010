@@ -8,7 +8,7 @@
 int main(void)
 {
 	Simulation *sim;
-	sim = CreateSimulation(12,12);
+	sim = CreateSimulation(12,4);
 	Particle *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8, *p9, *p10, *p11, *p12, *p13, *p14;
 	double *pos1, *pos2, *pos3, *pos4, *pos5, *pos6, *pos7, *pos8, *pos9, *pos10, *pos11, *pos12, *pos13, *pos14;
 	pos1 = (double*)malloc(3*sizeof(double));
@@ -32,19 +32,19 @@ int main(void)
 	pos1[1] = 3.00;
 	pos1[2] = 3.00;
 
-	pos2[0] = 11.23;
-	pos2[1] = 14.8;
-	pos2[2] = 13.99;
+	pos2[0] = 2.00;
+	pos2[1] = 3.00;
+	pos2[2] = 3.00;
 
 	// x2 < 2 && x1 > length - 2
 	// particle 3 and particle 4
-	pos3[0] = 11.0;
+	pos3[0] = 5.25;
 	pos3[1] = 5.0;
-	pos3[2] = 16.0;
+	pos3[2] = 7.00;
 
-	pos4[0] = 13.0;
-	pos4[1] = 5.0;
-	pos4[2] = 15.0;
+	pos4[0] = 5.25;
+	pos4[1] = 5.00;
+	pos4[2] = 7.5;
 
 	// y1 < 2 && y2 > length - 2
 	// particle 5 and particle 6
@@ -99,18 +99,19 @@ int main(void)
 	ParticleCreate(sim, 1, pos2);
 	ParticleCreate(sim, 2, pos3);
 	ParticleCreate(sim, 3, pos4);
-	ParticleCreate(sim, 4, pos5);
-	ParticleCreate(sim, 5, pos6);
-	ParticleCreate(sim, 6, pos7);
-	ParticleCreate(sim, 7, pos8);
-	ParticleCreate(sim, 8, pos9);
-	ParticleCreate(sim, 9,pos10);
-	ParticleCreate(sim,10,pos11);
-	ParticleCreate(sim,11,pos12);
-	ParticleCreate(sim,12,pos13);
-	ParticleCreate(sim,13,pos14);
+	//ParticleCreate(sim, 4, pos5);
+	//ParticleCreate(sim, 5, pos6);
+	//ParticleCreate(sim, 6, pos7);
+	//ParticleCreate(sim, 7, pos8);
+	//ParticleCreate(sim, 8, pos9);
+	//ParticleCreate(sim, 9,pos10);
+	//ParticleCreate(sim,10,pos11);
+	//ParticleCreate(sim,11,pos12);
+	//ParticleCreate(sim,12,pos13);
+	//ParticleCreate(sim,13,pos14);
 
-	GetDistanceTest(sim);
+	// GetDistanceTest(sim);
+	ForceTest(sim);
 
 	// printf("Position of particle 1:\nx: %f\ny: %f\nz: %f\n",sim->part_arr[0].pos[0], sim->part_arr[0].pos[1], sim->part_arr[0].pos[2]);
 	// //test set position
@@ -139,7 +140,30 @@ void GetDistanceTest(Simulation *sim)
 
 }
 
+void ForceTest(Simulation *sim)
+{
+	printf("Force Test\n");
+	Particle* arr = sim->part_arr;
+	double *force = (double*)malloc(4*sizeof(double));
 
+	for (int i = 0; i < sim->b; i++)
+	{
+		printf("Particle %d\nx %f\ny %f\nz %f\n\n",i, arr[i].pos[0], arr[i].pos[1], arr[i].pos[2]);
+	}
+	printf("\n\n-----------------------\n\n");
+	SimulationNetForce(sim);
+	force = sim->force_arr;
+	for (int i = 0; i < sim->b; i++)
+	{
+		printf("\nNet Force\nx %f\ny %f\nz %f\n", force[3*i+0], force[3*i+1], force[3*i+2]);
+	}
+	printf("\n\n-----------------------\n\n");
+	for (int i = 0; i < sim->b; i++)
+	{
+		printf("Particle %d\nx %f\ny %f\nz %f\n\n",i, arr[i].pos[0], arr[i].pos[1], arr[i].pos[2]);
+	}
+
+}
 
 
 

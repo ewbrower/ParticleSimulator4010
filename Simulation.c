@@ -20,6 +20,7 @@ Simulation* CreateSimulation(double l, int b)
 {
 	Simulation *sim = (Simulation*)malloc(sizeof(Simulation));
 	
+	sim->b = b;
 	sim->L = l;
 	sim->part_arr = (Particle*)malloc(b*sizeof(double));
 	sim->force_arr = (double*)malloc(3*b*sizeof(double));
@@ -34,7 +35,7 @@ Simulation* CreateSimulation(double l, int b)
 // // particle distance getter thing
 // double GetParticleDistance(Simulation sim, int partIndexA, int partIndexB);
 // // find net force
-double* SimulationNetForce(Simulation *sim, int partIndex)
+void SimulationNetForce(Simulation *sim)
 {
 	double *netForce = (double*)malloc(3*sizeof(double));
 	double *dist = (double*)malloc(4*sizeof(double));
@@ -107,7 +108,6 @@ void GetPosition(Simulation *sim, int partIndex, double* pos)
 }
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 {
-	printf("\n");
 	// get the vals
 	double length = sim->L;
 	Particle *partA = &sim->part_arr[partIndexA];
@@ -119,8 +119,8 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	double y2 = partB->pos[1];
 	double z2 = partB->pos[2];
 
-	printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexA, x1, y1, z1);
-	printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexB, x2, y2, z2);
+	// printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexA, x1, y1, z1);
+	// printf("Particle %d:\nx: %f\ny: %f\nz: %f\n", partIndexB, x2, y2, z2);
 
 	double *dVector = malloc(4*sizeof(double));
 
@@ -132,7 +132,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 
 	if (x1 < 2 && x2 > length - 2)
 	{
-		printf("x1 < 2 && x2 > length - 2\n");
+		// printf("x1 < 2 && x2 > length - 2\n");
 		double tempX1 = length + x1;
 		double tempDist = sqrt((tempX1-x2)*(tempX1-x2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
 
@@ -144,7 +144,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	}
 	else if (x2 < 2 && x1 > length - 2)
 	{
-		printf("x2 < 2 && x1 > length - 2\n");
+		// printf("x2 < 2 && x1 > length - 2\n");
 		double tempX2 = length + x2;
 		double tempDist = sqrt((x1-tempX2)*(x1-tempX2) + (y1-y2)*(y1-y2) + (z1-z2)*(z1-z2));
 
@@ -156,7 +156,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	}
 	else if (y1 < 2 && y2 > length - 2)
 	{
-		printf("y1 < 2 && y2 > length - 2\n");
+		// printf("y1 < 2 && y2 > length - 2\n");
 		double tempY1 = length + y1;
 		double tempDist = sqrt((x1-x2)*(x1-x2) + (tempY1-y2)*(tempY1-y2) + (z1-z2)*(z1-z2));
 
@@ -168,7 +168,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	}
 	else if (y2 < 2 && y1 > length - 2)
 	{
-		printf("y2 < 2 && y1 > length - 2\n");
+		// printf("y2 < 2 && y1 > length - 2\n");
 		double tempY2 = length + y2;
 		double tempDist = sqrt((x1-x2)*(x1-x2) + (y1-tempY2)*(y1-tempY2) + (z1-z2)*(z1-z2));
 
@@ -180,7 +180,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	}
 	else if (z1 < 2 && z2 > length - 2)
 	{
-		printf("z1 < 2 && z2 > length - 2\n");
+		// printf("z1 < 2 && z2 > length - 2\n");
 		double tempZ1 = length + z1;
 		double tempDist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (tempZ1-z2)*(tempZ1-z2));
 
@@ -192,7 +192,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	}
 	else if (z2 < 2 && z1 > length - 2)
 	{
-		printf("z2 < 2 && z1 > length - 2\n");
+		// printf("z2 < 2 && z1 > length - 2\n");
 		double tempZ2 = length + z2;
 		double tempDist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) + (z1-tempZ2)*(z1-tempZ2));
 
@@ -224,7 +224,7 @@ double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 	}
 	// doesn't take care of every overlap case
 
-	printf("Distance: %f\n", dVector[3]);
+	// printf("Distance: %f\n", dVector[3]);
 
 	return dVector;
 }

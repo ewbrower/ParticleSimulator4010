@@ -27,7 +27,7 @@ void GetBrownian(double *brownian);
 // // particle distance getter thing
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);
 // // find net force
-double* SimulationNetForce(Simulation *sim, int partIndex);
+void SimulationNetForce(Simulation *sim);
 // // check if in box update position to correct one
 double* SetPosition(Simulation *sim, int partIndex, double *pos);
 //
@@ -37,4 +37,5 @@ void GetPosition(Simulation *sim, int partIndex, double* pos);
 //
 void ParticleCreate(Simulation *sim, int partInex, double* init_pos);
 void GetDistanceTest(Simulation *sim);
+void ForceTest(Simulation *sim);
 #endif
