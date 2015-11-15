@@ -171,7 +171,10 @@ int ForceTest(Simulation *sim)
 	{
 		printf("Particle %d\nx %f\ny %f\nz %f\n\n",i, arr[i].pos[0], arr[i].pos[1], arr[i].pos[2]);
 	}
-
+	
+	//Calls WriteToFile function
+	WriteToFile(sim);
+	
 	return 0;
 
 }
