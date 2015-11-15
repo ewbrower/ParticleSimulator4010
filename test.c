@@ -8,7 +8,7 @@
 int main(void)
 {
 	Simulation *sim;
-	sim = CreateSimulation(12,4);
+	sim = CreateSimulation(10, 14);
 	Particle *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8, *p9, *p10, *p11, *p12, *p13, *p14;
 	double *pos1, *pos2, *pos3, *pos4, *pos5, *pos6, *pos7, *pos8, *pos9, *pos10, *pos11, *pos12, *pos13, *pos14;
 	pos1 = (double*)malloc(3*sizeof(double));
@@ -29,90 +29,90 @@ int main(void)
 	// x1 < 2 && x2 > length - 2
 	// particle 1 and particle 2
 	pos1[0] = 1.00;
-	pos1[1] = 3.00;
-	pos1[2] = 3.00;
+	pos1[1] = 1.00;
+	pos1[2] = 1.00;
 
-	pos2[0] = 2.00;
-	pos2[1] = 3.00;
-	pos2[2] = 3.00;
+	pos2[0] = 1.00;
+	pos2[1] = 1.00;
+	pos2[2] = 9.00;
 
 	// x2 < 2 && x1 > length - 2
 	// particle 3 and particle 4
-	pos3[0] = 5.25;
-	pos3[1] = 5.0;
-	pos3[2] = 7.00;
+	pos3[0] = 1.0;
+	pos3[1] = 9.0;
+	pos3[2] = 1.0;
 
-	pos4[0] = 5.25;
-	pos4[1] = 5.00;
-	pos4[2] = 7.5;
+	pos4[0] = 9.;
+	pos4[1] = 1.00;
+	pos4[2] = 1.0;
 
 	// y1 < 2 && y2 > length - 2
 	// particle 5 and particle 6
-	pos5[0] = 6.75;
-	pos5[1] = 0.5;
-	pos5[2] = 6.75;
+	pos5[0] = 9;
+	pos5[1] = 9.0;
+	pos5[2] = 1.0;
 
-	pos6[0] = 6.75;
-	pos6[1] = 11.5;
-	pos6[2] = 6.75;
+	pos6[0] = 9.0;
+	pos6[1] = 9.0;
+	pos6[2] = 9.0;
 
 	// y2 < 2 && y1 > length - 2
 	// particle 7 and particle 8
-	pos7[0] = 6.75;
-	pos7[1] = 12.0;
-	pos7[2] = 6.75;
+	pos7[0] = 9.0;
+	pos7[1] = 1.0;
+	pos7[2] = 9.0;
 
-	pos8[0] = 6.75;
-	pos8[1] = 11.0;
-	pos8[2] = 6.75;
+	pos8[0] = 1.0;
+	pos8[1] = 9.0;
+	pos8[2] = 9.0;
 
 	// z1 < 2 && z2 > length - 2
 	// particle 9 and particle 10
-	pos9[0] = 4.6;
-	pos9[1] = 4.6;
-	pos9[2] = 1.0;
+	pos9[0] = 1.0;
+	pos9[1] = 1.0;
+	pos9[2] = 5.0;
 
-	pos10[0] = 3.5;
-	pos10[1] = 3.5;
-	pos10[2] = 11.8;
+	pos10[0] = 9.0;
+	pos10[1] = 9.0;
+	pos10[2] = 7.0;
 
 	// z2 < 2 && z1 > length - 2
 	// particle 11 and particle 12
-	pos11[0] = 4.6;
-	pos11[1] = 4.6;
-	pos11[2] = 11.09;
+	pos11[0] = 5.0;
+	pos11[1] = 5.0;
+	pos11[2] = 1.5;
 
-	pos12[0] = 4.6;
-	pos12[1] = 4.6;
-	pos12[2] = 1.8;
+	pos12[0] = 5.0;
+	pos12[1] = 5.0;
+	pos12[2] = 8.5;
 
 	// corners
-	pos13[0] = 1.2;
-	pos13[1] = 0.8;
-	pos13[2] = 1.1;
+	pos13[0] = 5.0;
+	pos13[1] = 1.0;
+	pos13[2] = 2.5;
 
-	pos14[0] = 11.8;
-	pos14[1] = 11.3;
-	pos14[2] = 10.9;
+	pos14[0] = 9.0;
+	pos14[1] = 1.0;
+	pos14[2] = 6.0;
 
 	ParticleCreate(sim, 0, pos1);
 	ParticleCreate(sim, 1, pos2);
 	ParticleCreate(sim, 2, pos3);
 	ParticleCreate(sim, 3, pos4);
-	//ParticleCreate(sim, 4, pos5);
-	//ParticleCreate(sim, 5, pos6);
-	//ParticleCreate(sim, 6, pos7);
-	//ParticleCreate(sim, 7, pos8);
-	//ParticleCreate(sim, 8, pos9);
-	//ParticleCreate(sim, 9,pos10);
-	//ParticleCreate(sim,10,pos11);
-	//ParticleCreate(sim,11,pos12);
-	//ParticleCreate(sim,12,pos13);
-	//ParticleCreate(sim,13,pos14);
+	ParticleCreate(sim, 4, pos5);
+	ParticleCreate(sim, 5, pos6);
+	ParticleCreate(sim, 6, pos7);
+	ParticleCreate(sim, 7, pos8);
+	ParticleCreate(sim, 8, pos9);
+	ParticleCreate(sim, 9,pos10);
+	ParticleCreate(sim,10,pos11);
+	ParticleCreate(sim,11,pos12);
+	ParticleCreate(sim,12,pos13);
+	ParticleCreate(sim,13,pos14);
 
-	// GetDistanceTest(sim);
+	 GetDistanceTest(sim);
 	// ForceTest(sim);
-	StackTest(4.0, 10, 10);
+	//StackTest(4.0, 10, 10);
 	// StackTest(4.0, 100, 10);
 	// StackTest(10.0, 10, 10);
 	// StackTest(10.0, 100, 10);
@@ -140,13 +140,19 @@ int GetDistanceTest(Simulation *sim)
 {
 	printf("GetDistance Test\n");
 
-	GetParticleDistance(sim, 0, 1);
-	GetParticleDistance(sim, 2, 3);
-	GetParticleDistance(sim, 4, 5);
-	GetParticleDistance(sim, 6, 7);
+	GetParticleDistance(sim, 1, 0);
+	GetParticleDistance(sim, 0, 2);
+	GetParticleDistance(sim, 0, 3);
+	GetParticleDistance(sim, 0, 4);
+	GetParticleDistance(sim, 0, 5);
+	GetParticleDistance(sim, 0, 6);
+	GetParticleDistance(sim, 7, 0);
+	GetParticleDistance(sim, 9, 8);
 	GetParticleDistance(sim, 8, 9);
 	GetParticleDistance(sim,10,11);
-	GetParticleDistance(sim,12,13);
+	GetParticleDistance(sim,10,12);
+	GetParticleDistance(sim, 9,13);
+	//GetParticleDistance(sim, 2, 13);
 
 	return 0;
 
