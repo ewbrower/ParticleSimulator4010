@@ -165,6 +165,24 @@ void ForceTest(Simulation *sim)
 
 }
 
+// this function says how many particles to simultaneously run
+int StackTest(int start, int end)
+{
+	int i;
+	if (start >= end || start < 0 || end < 0)
+	{
+		return -1;
+	}
+	for (i = start; i < end; i++)
+	{
+		Simulation *sim;
+		
+		SimulationDestroy(sim);
+	}
+}
+
+
+
 
 
 

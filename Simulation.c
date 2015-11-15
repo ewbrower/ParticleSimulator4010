@@ -139,7 +139,7 @@ void WriteToFile(Simulation sim)
 	fwrite(newLine, 1, sizeof(newLine), fp); // new line
 	fwrite(writeLine, 1, sizeof(writeLine), fp); // "time_step_number"
 	for (i = 0; i < atoi(numParticles); i++) { //loop to get all the particles positions
-  	GetPosition(*sim, i, pos);
+		GetPosition(*sim, i, pos);
 		//convert x coordinate to char
 		char xcoord[5];
 		sprintf(xcoord, "%d", pos[0]);
@@ -157,10 +157,10 @@ void WriteToFile(Simulation sim)
 		puts(zcoord);
 
 		//writes the coordinates of the particle
-  	fwrite(timeS, 1, sizeof(timeS), fp); // writes timestep
-  	fwrite(xcoord, 1, sizeof(xcoord), fp); // writes x coordinate
-  	fwrite(ycoord, 1, sizeof(ycoord), fp); // writes y coordinate
-  	fwrite(zcoord, 1, sizeof(zcoord), fp); // writes z coordinate
+		fwrite(timeS, 1, sizeof(timeS), fp); // writes timestep
+		fwrite(xcoord, 1, sizeof(xcoord), fp); // writes x coordinate
+		fwrite(ycoord, 1, sizeof(ycoord), fp); // writes y coordinate
+		fwrite(zcoord, 1, sizeof(zcoord), fp); // writes z coordinate
 		fwrite(newLine, 1, sizeof(newLine), fp); // new line
 	}
 
@@ -314,4 +314,23 @@ void ParticleCreate(Simulation *sim, int partIndex, double* init_pos)
 	sim->part_arr[partIndex] = *p;
 	SetPosition(sim, partIndex, init_pos);
 }
+
+void DestroySimulation(Simulation *sim)
+{
+	int i;
+	for (i = 0; i < sim->b; i++)
+	{
+		Particle *p = &sim->part_arr[i];
+		free(p);
+	}
+	free(sim);
+}
                       
+
+
+
+
+
+
+
+
