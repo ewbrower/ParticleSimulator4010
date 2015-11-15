@@ -33,8 +33,9 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos);
 //
 // // write to the xyz file
 // void WriteToFile(Simulation sim);
-//
+void GetPosition(Simulation *sim, int partIndex, double* pos);
 //
 void ParticleCreate(Simulation *sim, int partInex, double* init_pos);
 void GetDistanceTest();
+
 #endif

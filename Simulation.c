@@ -101,7 +101,10 @@ void GetBrownian(double* brownian)
 		brownian[i] =brownian[i]* sqrt(2*(double)TIMESTEP);
 	}	
 }
-
+void GetPosition(Simulation *sim, int partIndex, double* pos)
+{
+	pos = sim->part_arr[partIndex].pos;
+}
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 {
 	printf("\n");
