@@ -114,7 +114,7 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 }
 //
 // // write to the xyz file
-void WriteToFile(Simulation sim)
+void WriteToFile(Simulation *sim)
 {
 	//convert particle count to char
 	char numParticles[5];
@@ -139,7 +139,7 @@ void WriteToFile(Simulation sim)
 	fwrite(newLine, 1, sizeof(newLine), fp); // new line
 	fwrite(writeLine, 1, sizeof(writeLine), fp); // "time_step_number"
 	for (i = 0; i < atoi(numParticles); i++) { //loop to get all the particles positions
-  	GetPosition(*sim, i, pos);
+  	GetPosition(sim, i, pos);
 		//convert x coordinate to char
 		char xcoord[5];
 		sprintf(xcoord, "%d", pos[0]);
