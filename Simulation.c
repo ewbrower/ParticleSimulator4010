@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 //#include "Particle.h"
 
 //struct simulation {
@@ -113,7 +114,58 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 }
 //
 // // write to the xyz file
-// void WriteToFile(Simulation sim);
+void WriteToFile(Simulation sim)
+{
+	//convert particle count to char
+	char numParticles[5];
+	sprintf(numParticles, "%d", sim.b);
+	puts(numParticles);
+
+	//convert timestep count to char
+	char timeS[10];
+	sprintf(timeS, "%d", TIMESTEP);
+	puts(timeS);
+
+	double pos[3];
+	char writeLine[] = "time_step_number\n";
+	char newLine[] = "\n";
+	int i;
+	double particlePoints[3];
+
+	FILE *fp;
+	fp = fopen("traj.xyz", "w"); //open file to write information in
+
+	fwrite(numParticles, 1, sizeof(numParticles), fp); // number of paricles written in file
+	fwrite(newLine, 1, sizeof(newLine), fp); // new line
+	fwrite(writeLine, 1, sizeof(writeLine), fp); // "time_step_number"
+	for (i = 0; i < atoi(numParticles); i++) { //loop to get all the particles positions
+  	GetPosition(*sim, i, pos);
+		//convert x coordinate to char
+		char xcoord[5];
+		sprintf(xcoord, "%d", pos[0]);
+		puts(xcoord);
+
+		//convert y coordinate to char
+		char ycoord[5];
+		sprintf(ycoord, "%d", pos[1]);
+		puts(ycoord);
+
+
+		//convert z coordinate to char
+		char zcoord[5];
+		sprintf(zcoord, "%d", pos[2]);
+		puts(zcoord);
+
+		//writes the coordinates of the particle
+  	fwrite(timeS, 1, sizeof(timeS), fp); // writes timestep
+  	fwrite(xcoord, 1, sizeof(xcoord), fp); // writes x coordinate
+  	fwrite(ycoord, 1, sizeof(ycoord), fp); // writes y coordinate
+  	fwrite(zcoord, 1, sizeof(zcoord), fp); // writes z coordinate
+		fwrite(newLine, 1, sizeof(newLine), fp); // new line
+	}
+
+	fclose(fp);
+}
 
 void GetBrownian(double* brownian)
 {
