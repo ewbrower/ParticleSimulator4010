@@ -118,12 +118,12 @@ void WriteToFile(Simulation *sim)
 {
 	//convert particle count to char
 	char numParticles[5];
-	sprintf(numParticles, "%d", sim.b);
+	sprintf(numParticles, "%d", sim->b);
 	puts(numParticles);
 
 	//convert timestep count to char
 	char timeS[10];
-	sprintf(timeS, "%d", TIMESTEP);
+	sprintf(timeS, "%f", TIMESTEP);
 	puts(timeS);
 
 	double pos[3];
@@ -142,18 +142,18 @@ void WriteToFile(Simulation *sim)
   	GetPosition(sim, i, pos);
 		//convert x coordinate to char
 		char xcoord[5];
-		sprintf(xcoord, "%d", pos[0]);
+		sprintf(xcoord, "%f", pos[0]);
 		puts(xcoord);
 
 		//convert y coordinate to char
 		char ycoord[5];
-		sprintf(ycoord, "%d", pos[1]);
+		sprintf(ycoord, "%f", pos[1]);
 		puts(ycoord);
 
 
 		//convert z coordinate to char
 		char zcoord[5];
-		sprintf(zcoord, "%d", pos[2]);
+		sprintf(zcoord, "%f", pos[2]);
 		puts(zcoord);
 
 		//writes the coordinates of the particle

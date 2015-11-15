@@ -181,8 +181,10 @@ int StackTest(int start, int end)
 	{
 		Simulation *sim;
 
-		SimulationDestroy(sim);
+		DestroySimulation(sim);
 	}
+
+	return 0;
 }
 
 
