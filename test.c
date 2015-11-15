@@ -145,20 +145,20 @@ void ForceTest(Simulation *sim)
 	printf("Force Test\n");
 	Particle* arr = sim->part_arr;
 	double *force = (double*)malloc(4*sizeof(double));
-
-	for (int i = 0; i < sim->b; i++)
+	int i;
+	for (i = 0; i < sim->b; i++)
 	{
 		printf("Particle %d\nx %f\ny %f\nz %f\n\n",i, arr[i].pos[0], arr[i].pos[1], arr[i].pos[2]);
 	}
 	printf("\n\n-----------------------\n\n");
 	SimulationNetForce(sim);
 	force = sim->force_arr;
-	for (int i = 0; i < sim->b; i++)
+	for (i = 0; i < sim->b; i++)
 	{
 		printf("\nNet Force\nx %f\ny %f\nz %f\n", force[3*i+0], force[3*i+1], force[3*i+2]);
 	}
 	printf("\n\n-----------------------\n\n");
-	for (int i = 0; i < sim->b; i++)
+	for (i = 0; i < sim->b; i++)
 	{
 		printf("Particle %d\nx %f\ny %f\nz %f\n\n",i, arr[i].pos[0], arr[i].pos[1], arr[i].pos[2]);
 	}

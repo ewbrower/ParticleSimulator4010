@@ -21,8 +21,8 @@ Simulation* CreateSimulation(double l, int b);
 // // generate the array of random Particles (private)
 // int CreateParticles(Simulation sim);
 //
-// // update simulation to next timestep (which is known)
-// void Update(Simulation sim);
+// update simulation to next timestep (which is known)
+void Update(Simulation *sim);
 void GetBrownian(double *brownian);
 // // particle distance getter thing
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);

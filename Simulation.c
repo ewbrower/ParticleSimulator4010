@@ -31,7 +31,34 @@ Simulation* CreateSimulation(double l, int b)
 // int CreateParticles(Simulation sim);
 //
 // // update simulation to next timestep (which is known)
-// void Update(Simulation sim);
+ void Update(Simulation *sim)
+{
+	double *newPos, *oldPos, *brownian, *netForce;
+	newPos = (double*)malloc(3*sizeof(double));
+	oldPos = (double*)malloc(3*sizeof(double));
+	brownian = (double*)malloc(3*sizeof(double));
+	netForce = (double*)malloc(3*sizeof(double));
+	int i, j;
+	SimulationNetForce(sim);
+	for (i = 0; i < sim->b; i++)
+	{
+		GetPosition(sim, i, oldPos);
+		GetBrownian(brownian);
+		for (j = 0; j < 3; j++)
+		{
+		netForce[j] = sim->force_arr[3*i+j];
+		
+		newPos[j] = netForce[j]*TIMESTEP + brownian[j]+oldPos[j];	
+		}
+		
+		SetPosition(sim, i, newPos);
+					
+	}
+	free(newPos);
+	free(oldPos);
+	free(brownian);
+	free(netForce);
+}
 // // particle distance getter thing
 // double GetParticleDistance(Simulation sim, int partIndexA, int partIndexB);
 // // find net force
