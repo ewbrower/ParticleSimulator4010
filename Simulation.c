@@ -136,56 +136,39 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 // // write to the xyz file
 void WriteToFile(Simulation *sim)
 {
-	//convert particle count to char
-	char numParticles[5];
-	sprintf(numParticles, "%d", sim->b);
-	puts(numParticles);
+	Particle* arr = sim->part_arr; //grabs particle positions
+
 
 	//convert timestep count to char
 	char timeS[10];
 	sprintf(timeS, "%f", TIMESTEP);
-	puts(timeS);
 
 	double pos[3];
 	char writeLine[] = "time_step_number\n";
-	char newLine[] = "\n";
 	int i;
+	int numParticles = sim->b; //pulls the number of particles
 	double particlePoints[3];
 
 	FILE *fp;
-	fp = fopen("traj.xyz", "w"); //open file to write information in
+	fp = fopen("traj.xyz", "wb"); //open file to write information in
 
-	fwrite(numParticles, 1, sizeof(numParticles), fp); // number of paricles written in file
-	fwrite(newLine, 1, sizeof(newLine), fp); // new line
-	fwrite(writeLine, 1, sizeof(writeLine), fp); // "time_step_number"
-	for (i = 0; i < atoi(numParticles); i++) { //loop to get all the particles positions
-  	GetPosition(sim, i, pos);
-		//convert x coordinate to char
-		char xcoord[5];
-		sprintf(xcoord, "%f", pos[0]);
-		puts(xcoord);
-
-		//convert y coordinate to char
-		char ycoord[5];
-		sprintf(ycoord, "%f", pos[1]);
-		puts(ycoord);
-
-
-		//convert z coordinate to char
-		char zcoord[5];
-		sprintf(zcoord, "%f", pos[2]);
-		puts(zcoord);
 
 		//writes the coordinates of the particle
-		fwrite(timeS, 1, sizeof(timeS), fp); // writes timestep
-		fwrite(xcoord, 1, sizeof(xcoord), fp); // writes x coordinate
-		fwrite(ycoord, 1, sizeof(ycoord), fp); // writes y coordinate
-		fwrite(zcoord, 1, sizeof(zcoord), fp); // writes z coordinate
-		fwrite(newLine, 1, sizeof(newLine), fp); // new line
+
+		fprintf(fp, "%d\n", numParticles); //write number of particles
+		fprintf(fp, "%s", writeLine); //writes "time_step_number"
+		for (i = 0; i < numParticles; i++) { //loop to get all the particles positions and write them
+	  	GetPosition(sim, i, pos);
+			fprintf(fp, "0 ");
+			fprintf(fp, "%0.3f ", arr[i].pos[0]);
+			fprintf(fp, "%0.3f ", arr[i].pos[1]);
+			fprintf(fp, "%0.3f\n", arr[i].pos[2]);
+
 	}
 
 	fclose(fp);
 }
+
 
 void GetBrownian(double* brownian)
 {
