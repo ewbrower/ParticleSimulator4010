@@ -32,13 +32,14 @@ Simulation* CreateSimulation(double l, int b)
 // generate the array of random Particles (private)
 int CreateParticles(Simulation *sim)
 {
-	int i, num;
+	int i;
 	double x, y, z;
-	num = sim->b;
 	srand(time(NULL));
-	
-	for (i = 0; i < num; i++)
+
+	for (i = 0; i < sim->b; i++)
 	{
+		sim->part_arr[i].pos= (double*)malloc(3*sizeof(double));
+		printf("Particle %d\n", i);
 		x = rand()/RAND_MAX; // random
 		y = rand()/RAND_MAX; // random
 		z = rand()/RAND_MAX; // random
@@ -47,7 +48,7 @@ int CreateParticles(Simulation *sim)
 		sim->part_arr[i].pos[2] = z;
 	}
 
-	return num;
+	return sim->b;
 }
 
 //
@@ -339,11 +340,11 @@ void ParticleCreate(Simulation *sim, int partIndex, double* init_pos)
 void DestroySimulation(Simulation *sim)
 {
 	int i;
-	for (i = 0; i < sim->b; i++)
-	{
-		Particle *p = &sim->part_arr[i];
-		free(p);
-	}
+	// for (i = 0; i < sim->b; i++)
+	// {
+	// 	Particle *p = &sim->part_arr[i];
+	// 	free(p);
+	// }
 	free(sim);
 }
                       

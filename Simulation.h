@@ -46,6 +46,6 @@ void GetPosition(Simulation *sim, int partIndex, double* pos);
 // ***** tests *****
 int GetDistanceTest(Simulation *sim);
 int ForceTest(Simulation *sim);
-int StackTest(int start, int end);
+int StackTest(double length, int particles, int steps);
 
 #endif

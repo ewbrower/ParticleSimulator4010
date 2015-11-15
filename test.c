@@ -111,7 +111,8 @@ int main(void)
 	//ParticleCreate(sim,13,pos14);
 
 	// GetDistanceTest(sim);
-	ForceTest(sim);
+	// ForceTest(sim);
+	StackTest(4.0, 10, 10);
 
 	// printf("Position of particle 1:\nx: %f\ny: %f\nz: %f\n",sim->part_arr[0].pos[0], sim->part_arr[0].pos[1], sim->part_arr[0].pos[2]);
 	// //test set position
@@ -169,21 +170,31 @@ int ForceTest(Simulation *sim)
 
 }
 
-// this function says how many particles to simultaneously run
-int StackTest(int start, int end)
+// this function takes in three parameters
+// how large to make the box
+// how many particles to simultaneously run
+// how many steps to run on each iteration
+int StackTest(double length, int particles, int steps)
 {
-	int i;
-	if (start >= end || start < 0 || end < 0)
+	int parts;
+
+	if (length <= 0 || particles <= 0 || steps <= 0)
 	{
+		printf("no params should be non-positive\n");
 		return -1;
 	}
-	for (i = start; i < end; i++)
-	{
-		Simulation *sim;
-		sim = CreateSimulation(12,4);
-		DestroySimulation(sim);
-	}
 
+	Simulation *sim;
+	sim = CreateSimulation(length, particles);
+	printf("\nCreated simulation\nbox length: %f\nparticles: %d\n", length, particles);
+
+	printf("sim num: %d\n\n", sim->b);
+
+	parts = CreateParticles(sim);
+	printf("Just created %d particles in this simulation\n\n", parts);
+
+	DestroySimulation(sim);
+	printf("Destroyed the simulation\n");
 	return 0;
 }
 
