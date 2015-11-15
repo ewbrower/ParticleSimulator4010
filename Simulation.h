@@ -1,6 +1,6 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
-#define TIMESTEP = 0.0002
+#define TIMESTEP  0.0002
 //#include "Particle.h"
 
 struct particle {
@@ -23,6 +23,7 @@ Simulation* CreateSimulation(double l, int b);
 //
 // // update simulation to next timestep (which is known)
 // void Update(Simulation sim);
+void GetBrownian(double *brownian);
 // // particle distance getter thing
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB);
 // // find net force
@@ -32,8 +33,13 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos);
 //
 // // write to the xyz file
 // void WriteToFile(Simulation sim);
-//
+void GetPosition(Simulation *sim, int partIndex, double* pos);
 //
 void ParticleCreate(Simulation *sim, int partInex, double* init_pos);
+<<<<<<< HEAD
 void GetDistanceTest(Simulation *sim);
+=======
+void GetDistanceTest();
+
+>>>>>>> 10f4f6d30f4fddfa8293d4f4cd08bfb9cfcbbc39
 #endif
