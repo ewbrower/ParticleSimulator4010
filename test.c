@@ -2,11 +2,13 @@
 #include <stdio.h>
 #include <math.h>
 #include "Simulation.h"
-//#include "Particle.h"
-
 
 int main(void)
 {
+	// this main function creates a simulation of 14 particles manually
+	// this allows finer control of where particles will be placed
+	// and also was helpful when we were tracking down memory issues
+	// in order of occurence
 	Simulation *sim;
 	sim = CreateSimulation(10, 14);
 	Particle *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8, *p9, *p10, *p11, *p12, *p13, *p14;
@@ -110,11 +112,10 @@ int main(void)
 	// ParticleCreate(sim,12,pos13);
 	// ParticleCreate(sim,13,pos14);
 
-//<<<<<<< HEAD
-	 //GetDistanceTest(sim);
+	//GetDistanceTest(sim);
 	// ForceTest(sim);
 	// StackTest(4.0, 10, 10);
-	 // GetDistanceTest(sim);
+	// GetDistanceTest(sim);
 	// ForceTest(sim);
 	// StackTest(4.0, 10, 10);
 	// StackTest(4.0, 100, 10);
@@ -144,6 +145,11 @@ int main(void)
 	
 }
 
+/**
+ * This function takes in a simulation with 14 total particles
+ * It will look at each particle and evaluate the distance, printing it out
+ * when we were looking at that function
+ */
 int GetDistanceTest(Simulation *sim)
 {
 	printf("GetDistance Test\n");
@@ -166,6 +172,9 @@ int GetDistanceTest(Simulation *sim)
 
 }
 
+/**
+ * This is a useful test for stepping into the force calculations
+ */
 int ForceTest(Simulation *sim)
 {
 	printf("Force Test\n");
@@ -193,10 +202,17 @@ int ForceTest(Simulation *sim)
 
 }
 
-// this function takes in three parameters
-// how large to make the box
-// how many particles to simultaneously run
-// how many steps to run on each iteration
+/**
+ * this function takes in three parameters
+ * how large to make the box
+ * how many particles to simultaneously run
+ * how many steps to run on each iteration
+ * 
+ * this is a full stack test of most functions
+ * This is a top level test with some catches in it to replicate functionality of main
+ * The use of this function is to quickly iterate through a range of box sizes
+ * simultaneous runs and steps
+ */
 int StackTest(double length, int particles, int steps)
 {
 	int parts, i, j, k;
@@ -229,6 +245,11 @@ int StackTest(double length, int particles, int steps)
 	return 0;
 }
 
+/**
+ * This function makes sure that GetPosition is accurate
+ * compared to the position stored in a particle structure
+ * If you can't successfully access the particle struct, it prints a warning
+ */
 int VerifyPosition(Simulation *sim, int partIndex)
 {
 	double *function, *manual;
@@ -252,7 +273,11 @@ int VerifyPosition(Simulation *sim, int partIndex)
 	printf("Position verified\n");
 	return 0;
 }
-
+/**
+ * This function builds only two particles and places them near each other
+ * it is useful for learning how particles interact individually and how the 
+ * Brownian affects their movement
+ */
 int ParticlePair()
 {
 	int i, j, k, particles;
@@ -294,6 +319,9 @@ int ParticlePair()
 
 }
 
+/**
+ * This function prints the summary of a particular timestep i
+ */
 void PrintSummary(Simulation *sim, int i)
 {
 	int particles, j, k;
@@ -308,14 +336,14 @@ void PrintSummary(Simulation *sim, int i)
 			printf("y: %f\t", sim->part_arr[j].pos[1]);
 			printf("z: %f\n", sim->part_arr[j].pos[2]);
 		}
-	// printf("---------------- Force Summary ----------------|\n");
-	// for(j = 0; j < particles*3; j+=3)
-	// {
-	// 	printf("Particle %d\n", j/3);
-	// 	printf("%f\t", sim->force_arr[j+0]);
-	// 	printf("%f\t", sim->force_arr[j+1]);
-	// 	printf("%f\n", sim->force_arr[j+2]);
-	// }
+	printf("---------------- Force Summary ----------------|\n");
+	for(j = 0; j < particles*3; j+=3)
+	{
+		printf("Particle %d\n", j/3);
+		printf("%f\t", sim->force_arr[j+0]);
+		printf("%f\t", sim->force_arr[j+1]);
+		printf("%f\n", sim->force_arr[j+2]);
+	}
 	printf("-----------------------------------------------|\n\n");
 }
 
