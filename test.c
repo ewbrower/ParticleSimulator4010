@@ -296,8 +296,18 @@ int ParticlePair()
 	particles = sim->b;
 	for (i = 0; i < 100; i++)
 	{
+		printf("-------------------------------\n");
+		printf("-- Particle Position Summary --\n");
+		for (j = 0; j < particles; j++)
+		{
+			printf("Particle %d\n", j);
+			printf("x: %f\n", sim->part_arr[j].pos[k]);
+			printf("y: %f\n", sim->part_arr[j].pos[k]);
+			printf("z: %f\n", sim->part_arr[j].pos[k]);
+		}
+
 		Update(sim);
-		printf("-- Update %d Force Summary --\n", i);
+		printf("--- Update %d Force Summary ---\n", i);
 		for(j = 0; j < particles*3; j+=3)
 		{
 			printf("Particle %d\n", j/3);
@@ -307,12 +317,12 @@ int ParticlePair()
 			}
 			printf("\n");
 		}
-		printf("\n");
+		printf("-------------------------------\n");
 	}
 
-	printf("------------------------------\n\n");
+	printf("-------------------------------\n\n");
 	DestroySimulation(sim);
-	printf("Destroyed the simulation\n");
+	printf("Destroyed the simulation\n\n");
 	return 0;
 
 }
