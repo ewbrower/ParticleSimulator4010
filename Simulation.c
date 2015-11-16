@@ -55,6 +55,7 @@ int CreateParticles(Simulation *sim)
 // // update simulation to next timestep (which is known)
  void Update(Simulation *sim)
 {
+	srand(time(NULL));
 	double *newPos, *oldPos, *brownian, *netForce;
 	newPos = (double*)malloc(3*sizeof(double));
 	oldPos = (double*)malloc(3*sizeof(double));
@@ -179,7 +180,7 @@ void WriteToFile(Simulation *sim)
 void GetBrownian(double* brownian)
 {
 	int i, j;
-	srand(time(NULL));
+	
 	for (i = 0; i < 3; i++)
 	{
 		brownian[i] = 0;
