@@ -153,35 +153,42 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 void WriteToFile(Simulation *sim)
 {
 	Particle* arr = sim->part_arr; //grabs particle positions
-
-
-	//convert timestep count to char
-	char timeS[10];
-	sprintf(timeS, "%f", TIMESTEP);
+	double count;
 
 	double pos[3];
-	char writeLine[] = "time_step_number\n";
+
 	int i;
 	int numParticles = sim->b; //pulls the number of particles
 	double particlePoints[3];
+	int numInFile;
+	char line[50];
+
 
 	FILE *fp;
-	fp = fopen("traj.xyz", "wb"); //open file to write information in
 
+	fp = fopen("traj.xyz", "a"); //open file to write information in
 
+	int size = ftell(fp); // see if file is empty, start time step at 0
+	if (size == 0){
+		count = 0.00000;
+	}
+	else{
+		count = count + 1;
+
+		}
 		//writes the coordinates of the particle
 
 		fprintf(fp, "%d\n", numParticles); //write number of particles
-		fprintf(fp, "%s", writeLine); //writes "time_step_number"
-		for (i = 0; i < numParticles; i++) { //loop to get all the particles positions and write them
-	  	GetPosition(sim, i, pos);
-			fprintf(fp, "0 ");
-			fprintf(fp, "%0.3f ", arr[i].pos[0]);
-			fprintf(fp, "%0.3f ", arr[i].pos[1]);
-			fprintf(fp, "%0.3f\n", arr[i].pos[2]);
+		fprintf(fp, "%f\n", count); //writes "time_step_number"
+	for (i = 0; i < numParticles; i++) { //loop to get all the particles positions and write them
+	  GetPosition(sim, i, pos);
+		fprintf(fp, "0 ");
+		fprintf(fp, "%0.3f ", arr[i].pos[0]);
+		fprintf(fp, "%0.3f ", arr[i].pos[1]);
+		fprintf(fp, "%0.3f\n", arr[i].pos[2]);
 
 	}
-
+	fprintf(fp, "\n");
 	fclose(fp);
 }
 
