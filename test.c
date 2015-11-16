@@ -95,25 +95,25 @@ int main(void)
 	pos14[1] = 1.0;
 	pos14[2] = 6.0;
 
-	ParticleCreate(sim, 0, pos1);
-	ParticleCreate(sim, 1, pos2);
-	ParticleCreate(sim, 2, pos3);
-	ParticleCreate(sim, 3, pos4);
-	ParticleCreate(sim, 4, pos5);
-	ParticleCreate(sim, 5, pos6);
-	ParticleCreate(sim, 6, pos7);
-	ParticleCreate(sim, 7, pos8);
-	ParticleCreate(sim, 8, pos9);
-	ParticleCreate(sim, 9,pos10);
-	ParticleCreate(sim,10,pos11);
-	ParticleCreate(sim,11,pos12);
-	ParticleCreate(sim,12,pos13);
-	ParticleCreate(sim,13,pos14);
+	// ParticleCreate(sim, 0, pos1);
+	// ParticleCreate(sim, 1, pos2);
+	// ParticleCreate(sim, 2, pos3);
+	// ParticleCreate(sim, 3, pos4);
+	// ParticleCreate(sim, 4, pos5);
+	// ParticleCreate(sim, 5, pos6);
+	// ParticleCreate(sim, 6, pos7);
+	// ParticleCreate(sim, 7, pos8);
+	// ParticleCreate(sim, 8, pos9);
+	// ParticleCreate(sim, 9,pos10);
+	// ParticleCreate(sim,10,pos11);
+	// ParticleCreate(sim,11,pos12);
+	// ParticleCreate(sim,12,pos13);
+	// ParticleCreate(sim,13,pos14);
 
 //<<<<<<< HEAD
 	 //GetDistanceTest(sim);
 	// ForceTest(sim);
-	StackTest(4.0, 10, 10);
+	// StackTest(4.0, 10, 10);
 //=======
 	 // GetDistanceTest(sim);
 	// ForceTest(sim);
@@ -138,6 +138,8 @@ int main(void)
 	// GetParticleDistance(sim, 0, 1);
 	
 	//VerifyPosition(sim, 0);
+
+	ParticlePair();
 
 	//Calls WriteToFile function
 	//WriteToFile(sim);
@@ -264,7 +266,56 @@ int VerifyPosition(Simulation *sim, int partIndex)
 	return 0;
 }
 
+int ParticlePair()
+{
+	int i, j, k, particles;
+	Particle *p1, *p2;
+	double *pos1, *pos2;
 
+	Simulation *sim;
+	sim = CreateSimulation(10, 2);
+
+	pos1 = (double*)malloc(3*sizeof(double));
+	pos2 = (double*)malloc(3*sizeof(double));
+
+	pos1[0] = 4.00;
+	pos1[1] = 5.00;
+	pos1[2] = 5.00;
+
+	pos2[0] = 5.00;
+	pos2[1] = 5.00;
+	pos2[2] = 5.00;
+
+	ParticleCreate(sim, 0, pos1);
+	ParticleCreate(sim, 1, pos2);
+
+	// there should only be two particles
+
+	printf("---------------- Particle Pair Test ----------------");
+
+	particles = sim->b;
+	for (i = 0; i < 100; i++)
+	{
+		Update(sim);
+		printf("-- Update %d Force Summary --\n", i);
+		for(j = 0; j < particles*3; j+=3)
+		{
+			printf("Particle %d\n", j/3);
+			for (k = 0; k < 3; k++)
+			{
+				printf("%f ", sim->force_arr[j+k]);
+			}
+			printf("\n");
+		}
+		printf("\n");
+	}
+
+	printf("------------------------------\n\n");
+	DestroySimulation(sim);
+	printf("Destroyed the simulation\n");
+	return 0;
+
+}
 
 
 

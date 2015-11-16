@@ -48,5 +48,6 @@ int GetDistanceTest(Simulation *sim);
 int ForceTest(Simulation *sim);
 int StackTest(double length, int particles, int steps);
 int VerifyPosition(Simulation *sim, int partIndex);
+int ParticlePair();
 
 #endif
