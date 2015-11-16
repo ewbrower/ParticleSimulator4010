@@ -291,19 +291,19 @@ int ParticlePair()
 
 	// there should only be two particles
 
-	printf("---------------- Particle Pair Test ----------------");
+	printf("Particle Pair Test\n\n");
 
 	particles = sim->b;
-	for (i = 0; i < 100; i++)
+	for (i = 0; i < 10; i++)
 	{
-		printf("-------------------------------\n");
+		// printf("-------------------------------\n");
 		printf("-- Particle Position Summary --\n");
 		for (j = 0; j < particles; j++)
 		{
 			printf("Particle %d\n", j);
-			printf("x: %f\n", sim->part_arr[j].pos[k]);
-			printf("y: %f\n", sim->part_arr[j].pos[k]);
-			printf("z: %f\n", sim->part_arr[j].pos[k]);
+			printf("x: %f\n", sim->part_arr[j].pos[0]);
+			printf("y: %f\n", sim->part_arr[j].pos[1]);
+			printf("z: %f\n", sim->part_arr[j].pos[2]);
 		}
 
 		Update(sim);
@@ -320,7 +320,7 @@ int ParticlePair()
 		printf("-------------------------------\n");
 	}
 
-	printf("-------------------------------\n\n");
+	printf("\n");
 	DestroySimulation(sim);
 	printf("Destroyed the simulation\n\n");
 	return 0;
