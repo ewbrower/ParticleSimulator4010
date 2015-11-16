@@ -150,7 +150,7 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 }
 //
 // // write to the xyz file
-void WriteToFile(Simulation *sim)
+void WriteToFile(Simulation *sim, int timestep)
 {
 	Particle* arr = sim->part_arr; //grabs particle positions
 	double count;
@@ -179,7 +179,7 @@ void WriteToFile(Simulation *sim)
 		//writes the coordinates of the particle
 
 		fprintf(fp, "%d\n", numParticles); //write number of particles
-		fprintf(fp, "%f\n", count); //writes "time_step_number"
+		fprintf(fp, "%d\n", timestep); //writes "time_step_number"
 	for (i = 0; i < numParticles; i++) { //loop to get all the particles positions and write them
 	  GetPosition(sim, i, pos);
 		fprintf(fp, "0 ");

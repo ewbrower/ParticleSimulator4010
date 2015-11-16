@@ -25,7 +25,7 @@ void DestroySimulation(Simulation *sim);
 // update simulation to next timestep (which is known)
 void Update(Simulation *sim);
 // write to the xyz file
-void WriteToFile(Simulation *sim);
+void WriteToFile(Simulation *sim, int timestep);
 
 // ***** particle functions *****
 // create a particle at a particular position
