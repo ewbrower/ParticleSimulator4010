@@ -49,5 +49,6 @@ int ForceTest(Simulation *sim);
 int StackTest(double length, int particles, int steps);
 int VerifyPosition(Simulation *sim, int partIndex);
 int ParticlePair();
+void PrintSummary(Simulation *sim, int i);
 
 #endif

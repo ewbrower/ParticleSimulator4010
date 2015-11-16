@@ -114,13 +114,11 @@ int main(void)
 	 //GetDistanceTest(sim);
 	// ForceTest(sim);
 	// StackTest(4.0, 10, 10);
-//=======
 	 // GetDistanceTest(sim);
 	// ForceTest(sim);
 	// StackTest(4.0, 10, 10);
-//>>>>>>> origin/master
 	// StackTest(4.0, 100, 10);
-	// StackTest(10.0, 10, 10);
+	StackTest(5.0, 4, 10);
 	// StackTest(10.0, 100, 10);
 	// StackTest(100.0, 10, 10);
 	// StackTest(100.0, 100, 10);
@@ -139,7 +137,7 @@ int main(void)
 	
 	//VerifyPosition(sim, 0);
 
-	ParticlePair();
+	// ParticlePair();
 
 	//Calls WriteToFile function
 	//WriteToFile(sim);
@@ -223,17 +221,7 @@ int StackTest(double length, int particles, int steps)
 	for (i = 0; i < steps; i++)
 	{
 		Update(sim);
-		printf("-- Update %d Force Summary --\n", i);
-		for(j = 0; j < particles*3; j+=3)
-		{
-			printf("Particle %d\n", j/3);
-			for (k = 0; k < 3; k++)
-			{
-				printf("%f ", sim->force_arr[j+k]);
-			}
-			printf("\n");
-		}
-		printf("\n");
+		PrintSummary(sim, i);
 	}
 
 	printf("------------------------------\n\n");
@@ -293,31 +281,11 @@ int ParticlePair()
 
 	printf("Particle Pair Test\n\n");
 
-	particles = sim->b;
+
 	for (i = 0; i < 10; i++)
 	{
-		// printf("-------------------------------\n");
-		printf("-- Particle Position Summary --\n");
-		for (j = 0; j < particles; j++)
-		{
-			printf("Particle %d\n", j);
-			printf("x: %f\n", sim->part_arr[j].pos[0]);
-			printf("y: %f\n", sim->part_arr[j].pos[1]);
-			printf("z: %f\n", sim->part_arr[j].pos[2]);
-		}
-
+		PrintSummary(sim, i);
 		Update(sim);
-		printf("--- Update %d Force Summary ---\n", i);
-		for(j = 0; j < particles*3; j+=3)
-		{
-			printf("Particle %d\n", j/3);
-			for (k = 0; k < 3; k++)
-			{
-				printf("%f ", sim->force_arr[j+k]);
-			}
-			printf("\n");
-		}
-		printf("-------------------------------\n");
 	}
 
 	printf("\n");
@@ -325,6 +293,30 @@ int ParticlePair()
 	printf("Destroyed the simulation\n\n");
 	return 0;
 
+}
+
+void PrintSummary(Simulation *sim, int i)
+{
+	int particles, j, k;
+	particles = sim->b;
+
+	printf("-- Particle Position Summary --\n");
+		for (j = 0; j < particles; j++)
+		{
+			printf("Particle %d\n", j);
+			printf("(x: %f)\t", sim->part_arr[j].pos[0]);
+			printf("(y: %f)\t", sim->part_arr[j].pos[1]);
+			printf("(z: %f)\n", sim->part_arr[j].pos[2]);
+		}
+	printf("--- Update %d Force Summary ---\n", i);
+	for(j = 0; j < particles*3; j+=3)
+	{
+		printf("Particle %d\n(", j/3);
+		printf("%f,\t", sim->force_arr[j+0]);
+		printf("%f,\t", sim->force_arr[j+1]);
+		printf("%f)\n", sim->force_arr[j+2]);
+	}
+	printf("-------------------------------\n");
 }
 
 
