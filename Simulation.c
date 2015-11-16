@@ -125,6 +125,15 @@ void SimulationNetForce(Simulation *sim)
 // // check if in box update position to correct one
 double* SetPosition(Simulation *sim, int partIndex, double *pos)
 {
+	int i;
+	for (i = 0; i < 3; i++)
+	{
+		if(pos[i] < 0)
+		{
+			pos[i] = pos[i] * -1;
+		}
+	}
+
 	//Make sure new position is in LxLxL box
 	pos[0] = fmod(pos[0],sim->L);
 	pos[1] = fmod(pos[1],sim->L);
