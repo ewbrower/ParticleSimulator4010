@@ -119,6 +119,7 @@ int main(void)
 	// StackTest(4.0, 10, 10);
 	// StackTest(4.0, 100, 10);
 	StackTest(5.0, 4, 10);
+	StackTest(4.0, 4, 300);
 	// StackTest(10.0, 100, 10);
 	// StackTest(100.0, 10, 10);
 	// StackTest(100.0, 100, 10);
