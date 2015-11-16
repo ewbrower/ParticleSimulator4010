@@ -118,7 +118,7 @@ int main(void)
 	// ForceTest(sim);
 	// StackTest(4.0, 10, 10);
 	// StackTest(4.0, 100, 10);
-	StackTest(5.0, 4, 500);
+	StackTest(5.0, 4, 2000);
 	// StackTest(10.0, 100, 10);
 	// StackTest(100.0, 10, 10);
 	// StackTest(100.0, 100, 10);

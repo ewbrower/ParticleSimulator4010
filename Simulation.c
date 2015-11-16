@@ -130,7 +130,7 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 	{
 		if(pos[i] < 0)
 		{
-			pos[i] = pos[i] * -1;
+			pos[i] = sim->L + pos[i];
 		}
 	}
 
