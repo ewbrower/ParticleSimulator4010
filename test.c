@@ -97,26 +97,26 @@ int main(void)
 	pos14[1] = 1.0;
 	pos14[2] = 6.0;
 
-	// ParticleCreate(sim, 0, pos1);
-	// ParticleCreate(sim, 1, pos2);
-	// ParticleCreate(sim, 2, pos3);
-	// ParticleCreate(sim, 3, pos4);
-	// ParticleCreate(sim, 4, pos5);
-	// ParticleCreate(sim, 5, pos6);
-	// ParticleCreate(sim, 6, pos7);
-	// ParticleCreate(sim, 7, pos8);
-	// ParticleCreate(sim, 8, pos9);
-	// ParticleCreate(sim, 9,pos10);
-	// ParticleCreate(sim,10,pos11);
-	// ParticleCreate(sim,11,pos12);
-	// ParticleCreate(sim,12,pos13);
-	// ParticleCreate(sim,13,pos14);
+	 ParticleCreate(sim, 0, pos1);
+	 ParticleCreate(sim, 1, pos2);
+	 ParticleCreate(sim, 2, pos3);
+	 ParticleCreate(sim, 3, pos4);
+	 ParticleCreate(sim, 4, pos5);
+	 ParticleCreate(sim, 5, pos6);
+	 ParticleCreate(sim, 6, pos7);
+	 ParticleCreate(sim, 7, pos8);
+	 ParticleCreate(sim, 8, pos9);
+	 ParticleCreate(sim, 9,pos10);
+	 ParticleCreate(sim,10,pos11);
+	 ParticleCreate(sim,11,pos12);
+	 ParticleCreate(sim,12,pos13);
+	 ParticleCreate(sim,13,pos14);
 
 	//GetDistanceTest(sim);
 	// ForceTest(sim);
 	// StackTest(4.0, 10, 10);
 	// GetDistanceTest(sim);
-	// ForceTest(sim);
+	ForceTest(sim);
 	// StackTest(4.0, 10, 10);
 	// StackTest(4.0, 100, 10);
 	StackTest(4.0, 4, 300);
@@ -134,11 +134,11 @@ int main(void)
 	// printf("Position of particle 1 after update:\nx: %f\ny: %f\nz: %f\n",sim->part_arr[0].pos[0], sim->part_arr[0].pos[1], sim->part_arr[0].pos[2]);
 
 	// printf("\nGet Distance Test\n");
-	// GetParticleDistance(sim, 0, 1);
+	 GetParticleDistance(sim, 0, 1);
 	
-	//VerifyPosition(sim, 0);
+	VerifyPosition(sim, 0);
 
-	// ParticlePair();
+	 ParticlePair();
 
 	//Calls WriteToFile function
 	//WriteToFile(sim);
@@ -253,7 +253,8 @@ int StackTest(double length, int particles, int steps)
 int VerifyPosition(Simulation *sim, int partIndex)
 {
 	double *function, *manual;
-
+	function = (double*)malloc(3*sizeof(double));
+	manual = (double*)malloc(3*sizeof(double));
 	Particle *part = &sim->part_arr[partIndex];
 
 	GetPosition(sim, partIndex, function);
