@@ -96,26 +96,27 @@ void SimulationNetForce(Simulation *sim)
 		netForce[0] = 0.0;
 		netForce[1] = 0.0;
 		netForce[2] = 0.0;
-		for (j = i+1; j < sim->b; j++)
+		for (j = 0; j < sim->b; j++)
 		{
 			
 			dist = GetParticleDistance(sim, i, j);
-			if (dist[3] < 2)
+			if (i != j)
+			{if (dist[3] < 2)
 			{
 				Fmag = 125*(2-dist[3]);
 				Fscale = Fmag/dist[3];
 				netForce[0] += Fscale*dist[0];
 				netForce[1] += Fscale*dist[1];
 				netForce[2] += Fscale*dist[2];						
-			} 	
+		}} 	
 		}
 		sim->force_arr[3*i] = netForce[0];
 		sim->force_arr[3*i+1] = netForce[1];
 		sim->force_arr[3*i+2] = netForce[2];
 		
-		sim->force_arr[3*j] = -1*netForce[0];
-		sim->force_arr[3*j+1] = -1*netForce[1];
-		sim->force_arr[3*j+2] = -1*netForce[2];
+		//sim->force_arr[3*j] = -1*netForce[0];
+		//sim->force_arr[3*j+1] = -1*netForce[1];
+		//sim->force_arr[3*j+2] = -1*netForce[2];
 	}
 	free(netForce);
 	free(dist);
@@ -129,7 +130,10 @@ double* SetPosition(Simulation *sim, int partIndex, double *pos)
 	pos[2] = fmod(pos[2],sim->L);
 	
 	//Assigns updated position to particle
-	sim->part_arr[partIndex].pos = pos;
+	//sim->part_arr[partIndex].pos = pos;
+	sim->part_arr[partIndex].pos[0] = pos[0];
+	sim->part_arr[partIndex].pos[1] = pos[1];
+	sim->part_arr[partIndex].pos[2] = pos[2];
 	//PARTICLE INDICIES START AT ZERO
 	//
 	return sim->part_arr[partIndex].pos;
@@ -189,7 +193,9 @@ void GetBrownian(double* brownian)
 }
 void GetPosition(Simulation *sim, int partIndex, double* pos)
 {
-	pos = sim->part_arr[partIndex].pos;
+	pos[0] = sim->part_arr[partIndex].pos[0];
+	pos[1] = sim->part_arr[partIndex].pos[1];
+	pos[2] = sim->part_arr[partIndex].pos[2];
 }
 double* GetParticleDistance(Simulation *sim, int partIndexA, int partIndexB)
 {
@@ -324,6 +330,8 @@ void ParticleCreate(Simulation *sim, int partIndex, double* init_pos)
 {
 	Particle *p = (Particle*)malloc(sizeof(Particle));
 	sim->part_arr[partIndex] = *p;
+	double* pos = (double*)malloc(3*sizeof(double));
+	sim->part_arr[partIndex].pos = pos;
 	SetPosition(sim, partIndex, init_pos);
 }
 
